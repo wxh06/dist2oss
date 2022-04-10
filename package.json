@@ -1,0 +1,48 @@
+{
+  "name": "github-releases-2-aliyun-oss",
+  "version": "0.0.1",
+  "description": "Uploading GitHub release assets to Aliyun OSS",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext ts .",
+    "lint:fix": "eslint --ext ts --fix .",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxh06/github-releases-2-aliyun-oss.git"
+  },
+  "keywords": [
+    "github",
+    "releases",
+    "assets",
+    "aliyun",
+    "oss",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "汪心禾 <wangxinhe06@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wxh06/github-releases-2-aliyun-oss/issues"
+  },
+  "homepage": "https://github.com/wxh06/github-releases-2-aliyun-oss#readme",
+  "dependencies": {
+    "ali-oss": "^6.17.1",
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/ali-oss": "^6.16.3",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.23",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "^2.25.2",
+    "typescript": "^4.6.3"
+  }
+}
