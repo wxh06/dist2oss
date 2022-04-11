@@ -31,23 +31,25 @@ const app = express();
 app.use(express.json());
 
 app.post('/payload', (req, res) => {
-  const { release }: { release: Release } = req.body;
-  res.end();
-  release.assets.forEach((asset) => {
-    if (!release.draft) {
-      axios.get(asset.browser_download_url, { responseType: 'arraybuffer' }).then((response) => {
-        store.put(`${release.tag_name}/${asset.name}`, response.data, {
-          headers: { 'Content-Type': asset.content_type },
-        }).then(() => {
-          if (!release.prerelease) {
-            store.putSymlink(`latest/${asset.name}`, `${release.tag_name}/${asset.name}`, {
-              headers: { 'Content-Type': asset.content_type },
-            });
-          }
+  if ('release' in req.body) {
+    const { release }: { release: Release } = req.body;
+    res.end();
+    release.assets.forEach((asset) => {
+      if (!release.draft) {
+        axios.get(asset.browser_download_url, { responseType: 'arraybuffer' }).then((response) => {
+          store.put(`${release.tag_name}/${asset.name}`, response.data, {
+            headers: { 'Content-Type': asset.content_type },
+          }).then(() => {
+            if (!release.prerelease) {
+              store.putSymlink(`latest/${asset.name}`, `${release.tag_name}/${asset.name}`, {
+                headers: { 'Content-Type': asset.content_type },
+              });
+            }
+          });
         });
-      });
-    }
-  });
+      }
+    });
+  }
 });
 
 app.listen(port, () => {
