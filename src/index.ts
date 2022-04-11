@@ -32,10 +32,11 @@ app.use(express.json());
 
 app.post('/payload', (req, res) => {
   if ('release' in req.body) {
+    res.write('Release received\n');
     const { release }: { release: Release } = req.body;
-    res.end();
     release.assets.forEach((asset) => {
       if (!release.draft) {
+        res.write(`Downloading ${asset.name}...\n`);
         axios.get(asset.browser_download_url, { responseType: 'arraybuffer' }).then((response) => {
           store.put(`${release.tag_name}/${asset.name}`, response.data, {
             headers: { 'Content-Type': asset.content_type },
@@ -49,6 +50,9 @@ app.post('/payload', (req, res) => {
         });
       }
     });
+    res.end();
+  } else {
+    res.send('Unknown event, ignored');
   }
 });
 
