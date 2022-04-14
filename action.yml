@@ -1,0 +1,31 @@
+---
+
+name: 'Dist to Aliyun OSS'
+author: '汪心禾 <wangxinhe06@gmail.com>'
+description: 'Upload release assets to Aliyun OSS'
+inputs:
+  version:
+    description: 'Version number'
+    required: true
+  stable:
+    description: 'Whether this release is stable or not'
+    required: false
+    default: true
+  access-key-id:
+    description: 'AliyunOSS AccessKey ID'
+    required: true
+  access-key-secret:
+    description: 'AliyunOSS AccessKey Secret'
+    required: true
+  bucket:
+    description: 'AliyunOSS Bucket'
+    required: true
+  region:
+    description: 'AliyunOSS Region'
+    required: true
+  pattern:
+    description: 'Pattern to match the files being uploaded'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

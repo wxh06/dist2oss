@@ -1,2 +1,3 @@
-# github-releases-2-aliyun-oss
-Uploading GitHub release assets to Aliyun OSS
+# dist2oss
+
+GitHub Actions that upload assets to Aliyun OSS in the directory of specific version number
