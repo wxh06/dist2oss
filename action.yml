@@ -25,7 +25,8 @@ inputs:
     required: true
   pattern:
     description: 'Pattern to match the files being uploaded'
-    required: true
+    required: false
+    default: dist/**/*
 runs:
   using: 'node16'
   main: 'dist/index.js'
